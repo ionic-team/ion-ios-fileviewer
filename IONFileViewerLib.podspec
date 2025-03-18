@@ -5,6 +5,8 @@ Pod::Spec.new do |spec|
   spec.summary                = 'Library for viewing files in iOS.'
   spec.description            = <<-DESC
   A Swift library for iOS that allows opening files and previewing media files.
+  
+  The library supports local files, app assets, and remote URLs.
   DESC
 
   spec.homepage               = 'https://github.com/ionic-team/ion-ios-fileviewer'
