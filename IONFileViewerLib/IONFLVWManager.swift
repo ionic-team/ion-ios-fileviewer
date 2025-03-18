@@ -29,7 +29,7 @@ extension IONFLVWManager: IONFLVWOpenDocumentManager {
         try openDocumentFromLocalPath(url, completion)
     }
     
-    public func openDocumentFromURL(url: String, completion: @escaping ((IONFLVWError?) -> Void)) throws {
+    public func openDocumentFromUrl(url: String, completion: @escaping ((IONFLVWError?) -> Void)) throws {
         guard !url.isEmpty else { throw IONFLVWError.invalidEmptyURL }
         guard url.isValidUrl(), let fileUrl = URL(string: url.replacingOccurrences(of: " ", with: "%20")) else {
             throw IONFLVWError.invalidURL(forUrl: url)

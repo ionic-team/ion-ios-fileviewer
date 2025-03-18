@@ -3,7 +3,7 @@ import Foundation
 public protocol IONFLVWOpenDocumentManager {
     func openDocumentFromLocalPath(filePath: String, completion: @escaping (() -> Void )) throws
     func openDocumentFromResources(assetPath: String, completion: @escaping (() -> Void )) throws
-    func openDocumentFromURL(url: String, completion: @escaping ((IONFLVWError?) -> Void )) throws
+    func openDocumentFromUrl(url: String, completion: @escaping ((IONFLVWError?) -> Void )) throws
 }
 
 public protocol IONFLVWPreviewMediaManager {
