@@ -11,11 +11,12 @@ class IONFLVWPreviewer: QLPreviewControllerDataSource {
         self.viewController = viewController
     }
     
-    func previewMediaContent(url: URL) throws {
+    func previewMediaContent(url: URL) {
+        guard let viewController = viewController else { return }
         let player = AVPlayer(url: url.standardized)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
-        viewController?.present(playerViewController, animated: true) {
+        viewController.present(playerViewController, animated: true) {
             playerViewController.player!.play()
         }
     }

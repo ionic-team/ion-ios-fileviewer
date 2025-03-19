@@ -31,7 +31,7 @@ class IONFLVWDocumentOpener: NSObject, UIDocumentInteractionControllerDelegate {
         })
     }
     
-    func openDocumentFromLocalPath(filePath: URL, completion: @escaping () -> Void) throws {
+    func openDocumentFromLocalPath(filePath: URL, completion: @escaping () -> Void) {
         self.documentInteractionController = IONFLVWDocumentInteractor {
             completion()
         }

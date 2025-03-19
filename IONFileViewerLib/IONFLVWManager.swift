@@ -17,16 +17,16 @@ extension IONFLVWManager: IONFLVWOpenDocumentManager {
             throw IONFLVWError.emptyFilePath
         }
         guard let file = URL(string: url) else { throw IONFLVWError.couldNotOpenDocument }
-        guard file.lastPathComponent.contains(".") else { throw IONFLVWError.missingFileExtension }
+        guard !file.pathExtension.isEmpty else { throw IONFLVWError.missingFileExtension }
         guard fileManager.fileExists(atPath: file.path) else { throw IONFLVWError.fileDoesNotExist(atPath: filePath) }
         
-        try openDocumentFromLocalPath(file, completion)
+        openDocumentFromLocalPath(file, completion)
     }
     
     public func openDocumentFromResources(assetPath: String, completion: @escaping (() -> Void)) throws {
         let url = try getResourceURL(assetPath)
         
-        try openDocumentFromLocalPath(url, completion)
+        openDocumentFromLocalPath(url, completion)
     }
     
     public func openDocumentFromUrl(url: String, completion: @escaping ((IONFLVWError?) -> Void)) throws {
@@ -35,25 +35,23 @@ extension IONFLVWManager: IONFLVWOpenDocumentManager {
             throw IONFLVWError.invalidURL(forUrl: url)
         }
         
-        if let viewController = rootViewController {
-            let fileViewerOpenDocument = IONFLVWDocumentOpener(viewController: viewController)
-            fileViewerOpenDocument.openDocumentFromUrl(url: fileUrl, completion: { (inner: IONFLVWCompletionHandler) in
-                do {
-                    try inner()
-                    completion(nil)
-                } catch {
-                    completion((error as? IONFLVWError) ?? .couldNotOpenDocument)
-                }
-            })
-        }
+        guard let viewController = rootViewController else { return }
+        let fileViewerOpenDocument = IONFLVWDocumentOpener(viewController: viewController)
+        fileViewerOpenDocument.openDocumentFromUrl(url: fileUrl, completion: { (inner: IONFLVWCompletionHandler) in
+            do {
+                try inner()
+                completion(nil)
+            } catch {
+                completion((error as? IONFLVWError) ?? .couldNotOpenDocument)
+            }
+        })
     }
     
-    private func openDocumentFromLocalPath(_ url: URL, _ completion: @escaping (() -> Void)) throws {
-        if let viewController = rootViewController {
-            let fileViewerOpenDocument = IONFLVWDocumentOpener(viewController: viewController)
-            try fileViewerOpenDocument.openDocumentFromLocalPath(filePath: url) {
-                completion()
-            }
+    private func openDocumentFromLocalPath(_ url: URL, _ completion: @escaping (() -> Void)) {
+        guard let viewController = rootViewController else { return }
+        let fileViewerOpenDocument = IONFLVWDocumentOpener(viewController: viewController)
+        fileViewerOpenDocument.openDocumentFromLocalPath(filePath: url) {
+            completion()
         }
     }
 }
@@ -64,27 +62,26 @@ extension IONFLVWManager: IONFLVWPreviewMediaManager {
         guard let file = URL(string: filePath) else { throw IONFLVWError.couldNotOpenDocument }
         guard fileManager.fileExists(atPath: file.path) else { throw IONFLVWError.fileDoesNotExist(atPath: filePath) }
         
-        try previewMediaContent(file)
+        previewMediaContent(file)
     }
     
     public func previewMediaContentFromResources(assetPath: String) throws {
         let url = try getResourceURL(assetPath)
         
-        try previewMediaContent(url)
+        previewMediaContent(url)
     }
     
     public func previewMediaContentFromUrl(url: String) throws {
         guard !url.isEmpty else { throw IONFLVWError.invalidEmptyURL }
         guard url.isValidUrl(), let fileUrl = URL(string: url) else { throw IONFLVWError.invalidURL(forUrl: url) }
         
-        try previewMediaContent(fileUrl)
+        previewMediaContent(fileUrl)
     }
     
-    private func previewMediaContent(_ url: URL) throws {
-        if let viewController = rootViewController {
-            let fileViewerPreview = IONFLVWPreviewer(viewController: viewController)
-            try fileViewerPreview.previewMediaContent(url: url)
-        }
+    private func previewMediaContent(_ url: URL) {
+        guard let viewController = rootViewController else { return }
+        let fileViewerPreview = IONFLVWPreviewer(viewController: viewController)
+        fileViewerPreview.previewMediaContent(url: url)
     }
 }
 
