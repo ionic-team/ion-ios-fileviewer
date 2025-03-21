@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Features
-- 
+- Add implementation for opening files - `openDocumentFromLocalPath`, `openDocumentFromResources`, `openDocumentFromUrl`. 
+- Add implementation for previewing media files - `previewMediaContentFromLocalPath`, `previewMediaContentFromResources`, `previewMediaContentFromUrl`.
 
 ### Chores
 - Add dependency management contract file for CocoaPods and Swift Package Manager.

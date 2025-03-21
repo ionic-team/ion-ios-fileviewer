@@ -3,11 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		630F6E3F2D848BD60022FB0C /* IONFileViewerLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630F6E342D848BD60022FB0C /* IONFileViewerLib.framework */; };
+		6372DEE42D89C3D80014548F /* IONFLVWDocumentOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6372DEDC2D89C3D80014548F /* IONFLVWDocumentOpener.swift */; };
+		6372DEE52D89C3D80014548F /* IONFLVWFileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6372DEDD2D89C3D80014548F /* IONFLVWFileDownloader.swift */; };
+		6372DEE62D89C3D80014548F /* IONFLVWManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6372DEDE2D89C3D80014548F /* IONFLVWManager.swift */; };
+		6372DEE72D89C3D80014548F /* IONFLVWManager+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6372DEDF2D89C3D80014548F /* IONFLVWManager+Errors.swift */; };
+		6372DEE82D89C3D80014548F /* IONFLVWManager+Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6372DEE02D89C3D80014548F /* IONFLVWManager+Protocols.swift */; };
+		6372DEE92D89C3D80014548F /* IONFLVWPreviewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6372DEE12D89C3D80014548F /* IONFLVWPreviewer.swift */; };
+		6372DEEA2D89C3D80014548F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6372DEE22D89C3D80014548F /* String+Extension.swift */; };
+		6372DEED2D89C3DB0014548F /* IONFileViewerLibTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6372DEEB2D89C3DB0014548F /* IONFileViewerLibTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,20 +31,15 @@
 /* Begin PBXFileReference section */
 		630F6E342D848BD60022FB0C /* IONFileViewerLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IONFileViewerLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		630F6E3E2D848BD60022FB0C /* IONFileViewerLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IONFileViewerLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6372DEDC2D89C3D80014548F /* IONFLVWDocumentOpener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONFLVWDocumentOpener.swift; sourceTree = "<group>"; };
+		6372DEDD2D89C3D80014548F /* IONFLVWFileDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONFLVWFileDownloader.swift; sourceTree = "<group>"; };
+		6372DEDE2D89C3D80014548F /* IONFLVWManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONFLVWManager.swift; sourceTree = "<group>"; };
+		6372DEDF2D89C3D80014548F /* IONFLVWManager+Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IONFLVWManager+Errors.swift"; sourceTree = "<group>"; };
+		6372DEE02D89C3D80014548F /* IONFLVWManager+Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IONFLVWManager+Protocols.swift"; sourceTree = "<group>"; };
+		6372DEE12D89C3D80014548F /* IONFLVWPreviewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONFLVWPreviewer.swift; sourceTree = "<group>"; };
+		6372DEE22D89C3D80014548F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		6372DEEB2D89C3DB0014548F /* IONFileViewerLibTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONFileViewerLibTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		630F6E362D848BD60022FB0C /* IONFileViewerLib */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = IONFileViewerLib;
-			sourceTree = "<group>";
-		};
-		630F6E422D848BD60022FB0C /* IONFileViewerLibTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = IONFileViewerLibTests;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		630F6E312D848BD60022FB0C /* Frameworks */ = {
@@ -60,8 +63,8 @@
 		630F6E2A2D848BD50022FB0C = {
 			isa = PBXGroup;
 			children = (
-				630F6E362D848BD60022FB0C /* IONFileViewerLib */,
-				630F6E422D848BD60022FB0C /* IONFileViewerLibTests */,
+				6372DEE32D89C3D80014548F /* IONFileViewerLib */,
+				6372DEEC2D89C3DB0014548F /* IONFileViewerLibTests */,
 				630F6E352D848BD60022FB0C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,6 +76,28 @@
 				630F6E3E2D848BD60022FB0C /* IONFileViewerLibTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6372DEE32D89C3D80014548F /* IONFileViewerLib */ = {
+			isa = PBXGroup;
+			children = (
+				6372DEDC2D89C3D80014548F /* IONFLVWDocumentOpener.swift */,
+				6372DEDD2D89C3D80014548F /* IONFLVWFileDownloader.swift */,
+				6372DEDE2D89C3D80014548F /* IONFLVWManager.swift */,
+				6372DEDF2D89C3D80014548F /* IONFLVWManager+Errors.swift */,
+				6372DEE02D89C3D80014548F /* IONFLVWManager+Protocols.swift */,
+				6372DEE12D89C3D80014548F /* IONFLVWPreviewer.swift */,
+				6372DEE22D89C3D80014548F /* String+Extension.swift */,
+			);
+			path = IONFileViewerLib;
+			sourceTree = "<group>";
+		};
+		6372DEEC2D89C3DB0014548F /* IONFileViewerLibTests */ = {
+			isa = PBXGroup;
+			children = (
+				6372DEEB2D89C3DB0014548F /* IONFileViewerLibTests.swift */,
+			);
+			path = IONFileViewerLibTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,9 +127,6 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				630F6E362D848BD60022FB0C /* IONFileViewerLib */,
-			);
 			name = IONFileViewerLib;
 			packageProductDependencies = (
 			);
@@ -124,9 +146,6 @@
 			);
 			dependencies = (
 				630F6E412D848BD60022FB0C /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				630F6E422D848BD60022FB0C /* IONFileViewerLibTests */,
 			);
 			name = IONFileViewerLibTests;
 			packageProductDependencies = (
@@ -155,6 +174,7 @@
 				};
 			};
 			buildConfigurationList = 630F6E2E2D848BD50022FB0C /* Build configuration list for PBXProject "IONFileViewerLib" */;
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -163,7 +183,6 @@
 			);
 			mainGroup = 630F6E2A2D848BD50022FB0C;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 630F6E352D848BD60022FB0C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -217,6 +236,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6372DEE42D89C3D80014548F /* IONFLVWDocumentOpener.swift in Sources */,
+				6372DEE52D89C3D80014548F /* IONFLVWFileDownloader.swift in Sources */,
+				6372DEE62D89C3D80014548F /* IONFLVWManager.swift in Sources */,
+				6372DEE72D89C3D80014548F /* IONFLVWManager+Errors.swift in Sources */,
+				6372DEE82D89C3D80014548F /* IONFLVWManager+Protocols.swift in Sources */,
+				6372DEE92D89C3D80014548F /* IONFLVWPreviewer.swift in Sources */,
+				6372DEEA2D89C3D80014548F /* String+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6372DEED2D89C3DB0014548F /* IONFileViewerLibTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,9 +465,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.ionic.libs.fileviewer.IONFileViewerLibTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -453,9 +485,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.ionic.libs.fileviewer.IONFileViewerLibTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
