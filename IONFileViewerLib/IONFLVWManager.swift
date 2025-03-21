@@ -13,10 +13,10 @@ public class IONFLVWManager {
 
 extension IONFLVWManager: IONFLVWOpenDocumentManager {
     public func openDocumentFromLocalPath(filePath: String, completion: @escaping (() -> Void)) throws {
-        guard !filePath.isEmpty, let url = filePath.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+        guard !filePath.isEmpty else {
             throw IONFLVWError.emptyFilePath
         }
-        guard let file = URL(string: url) else { throw IONFLVWError.couldNotOpenDocument }
+        guard let file = URL(string: filePath) else { throw IONFLVWError.couldNotOpenDocument }
         guard !file.pathExtension.isEmpty else { throw IONFLVWError.missingFileExtension }
         guard fileManager.fileExists(atPath: file.path) else { throw IONFLVWError.fileDoesNotExist(atPath: filePath) }
         
