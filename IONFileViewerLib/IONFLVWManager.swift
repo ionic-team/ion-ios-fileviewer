@@ -16,9 +16,10 @@ extension IONFLVWManager: IONFLVWOpenDocumentManager {
         guard !filePath.isEmpty else {
             throw IONFLVWError.emptyFilePath
         }
-        guard let file = URL(string: filePath) else { throw IONFLVWError.couldNotOpenDocument }
+        let filePathToUse = replaceDuplicateSlashes(fromLocalPath: filePath)
+        guard let file = URL(string: filePathToUse) else { throw IONFLVWError.couldNotOpenDocument }
         guard !file.pathExtension.isEmpty else { throw IONFLVWError.missingFileExtension }
-        guard fileManager.fileExists(atPath: file.path) else { throw IONFLVWError.fileDoesNotExist(atPath: filePath) }
+        guard fileManager.fileExists(atPath: file.path) else { throw IONFLVWError.fileDoesNotExist(atPath: filePathToUse) }
         
         openDocumentFromLocalPath(file, completion)
     }
@@ -59,8 +60,9 @@ extension IONFLVWManager: IONFLVWOpenDocumentManager {
 extension IONFLVWManager: IONFLVWPreviewMediaManager {
     public func previewMediaContentFromLocalPath(filePath: String) throws {
         guard !filePath.isEmpty else { throw IONFLVWError.emptyFilePath }
-        guard let file = URL(string: filePath) else { throw IONFLVWError.couldNotOpenDocument }
-        guard fileManager.fileExists(atPath: file.path) else { throw IONFLVWError.fileDoesNotExist(atPath: filePath) }
+        let filePathToUse = replaceDuplicateSlashes(fromLocalPath: filePath)
+        guard let file = URL(string: filePathToUse) else { throw IONFLVWError.couldNotOpenDocument }
+        guard fileManager.fileExists(atPath: file.path) else { throw IONFLVWError.fileDoesNotExist(atPath: filePathToUse) }
         
         previewMediaContent(file)
     }
@@ -103,5 +105,19 @@ private extension IONFLVWManager {
         
         let resourceURL = URL(fileURLWithPath: resourcePath)
         return resourceURL
+    }
+    
+    func replaceDuplicateSlashes(fromLocalPath path: String) -> String {
+        // remove duplicate slashes '//', except for the ones indicating the scheme (e.g. 'file://')
+        var pathWithoutDuplicateSeparators = path.replacingOccurrences(
+            of: #"(?<!:)/{2,}(?!/)"#,
+            with: "/",
+            options: .regularExpression
+        )
+        if (path.contains(":///")) {
+            // the regex may ommit a slash after ://, which is incorrect because it breaks in case of an absolute file path
+            pathWithoutDuplicateSeparators = pathWithoutDuplicateSeparators.replacingOccurrences(of: "://", with: ":///")
+        }
+        return pathWithoutDuplicateSeparators
     }
 }
