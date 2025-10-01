@@ -100,7 +100,9 @@ private extension IONFLVWManager {
     
     func prepareLocalFile(atPath filePath: String) throws -> URL {
         guard !filePath.isEmpty else { throw IONFLVWError.emptyFilePath }
-        let filePathToUse = replaceDuplicateSlashes(fromLocalPath: filePath)
+        var filePathToUse = replaceDuplicateSlashes(fromLocalPath: filePath)
+        // add file:// if it doesn't exist - the document / media opening fails if the local file is not a "file://" URI.
+        filePathToUse = filePathToUse.hasPrefix("file://") ? filePathToUse : "file://\(filePathToUse)"
         guard let file = URL(string: filePathToUse) else { throw IONFLVWError.couldNotOpenDocument }
         guard !file.pathExtension.isEmpty else { throw IONFLVWError.missingFileExtension }
         guard fileManager.fileExists(atPath: file.path) else { throw IONFLVWError.fileDoesNotExist(atPath: filePathToUse) }
