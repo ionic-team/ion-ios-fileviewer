@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                   = 'IONFileViewerLib'
-  spec.version                = '1.0.4'
+  spec.version                = '1.0.5'
 
   spec.summary                = 'Library for viewing files in iOS.'
   spec.description            = <<-DESC
