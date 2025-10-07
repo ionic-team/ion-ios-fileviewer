@@ -24,7 +24,7 @@ jobs:
       - name: Link SwiftLint or install it
         run: brew link --overwrite swiftlint || brew install swiftlint
 
-      - name: Set up XCode 
+      - name: Set up XCode (minmum support version)
         run: sudo xcode-select --switch /Applications/Xcode_15.0.app
 
       - name: Set up Ruby
