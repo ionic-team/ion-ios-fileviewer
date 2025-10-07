@@ -13,13 +13,7 @@ public class IONFLVWManager {
 
 extension IONFLVWManager: IONFLVWOpenDocumentManager {
     public func openDocumentFromLocalPath(filePath: String, completion: @escaping (() -> Void)) throws {
-        guard !filePath.isEmpty else {
-            throw IONFLVWError.emptyFilePath
-        }
-        let filePathToUse = replaceDuplicateSlashes(fromLocalPath: filePath)
-        guard let file = URL(string: filePathToUse) else { throw IONFLVWError.couldNotOpenDocument }
-        guard !file.pathExtension.isEmpty else { throw IONFLVWError.missingFileExtension }
-        guard fileManager.fileExists(atPath: file.path) else { throw IONFLVWError.fileDoesNotExist(atPath: filePathToUse) }
+        let file = try prepareLocalFile(atPath: filePath)
         
         openDocumentFromLocalPath(file, completion)
     }
@@ -59,10 +53,7 @@ extension IONFLVWManager: IONFLVWOpenDocumentManager {
 
 extension IONFLVWManager: IONFLVWPreviewMediaManager {
     public func previewMediaContentFromLocalPath(filePath: String) throws {
-        guard !filePath.isEmpty else { throw IONFLVWError.emptyFilePath }
-        let filePathToUse = replaceDuplicateSlashes(fromLocalPath: filePath)
-        guard let file = URL(string: filePathToUse) else { throw IONFLVWError.couldNotOpenDocument }
-        guard fileManager.fileExists(atPath: file.path) else { throw IONFLVWError.fileDoesNotExist(atPath: filePathToUse) }
+        let file = try prepareLocalFile(atPath: filePath)
         
         previewMediaContent(file)
     }
@@ -105,6 +96,17 @@ private extension IONFLVWManager {
         
         let resourceURL = URL(fileURLWithPath: resourcePath)
         return resourceURL
+    }
+    
+    func prepareLocalFile(atPath filePath: String) throws -> URL {
+        guard !filePath.isEmpty else { throw IONFLVWError.emptyFilePath }
+        var filePathToUse = replaceDuplicateSlashes(fromLocalPath: filePath)
+        // add file:// if it doesn't exist - the document / media opening fails if the local file is not a "file://" URI.
+        filePathToUse = filePathToUse.hasPrefix("file://") ? filePathToUse : "file://\(filePathToUse)"
+        guard let file = URL(string: filePathToUse) else { throw IONFLVWError.couldNotOpenDocument }
+        guard !file.pathExtension.isEmpty else { throw IONFLVWError.missingFileExtension }
+        guard fileManager.fileExists(atPath: file.path) else { throw IONFLVWError.fileDoesNotExist(atPath: filePathToUse) }
+        return file
     }
     
     func replaceDuplicateSlashes(fromLocalPath path: String) -> String {

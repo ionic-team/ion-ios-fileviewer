@@ -18,7 +18,10 @@ default_platform(:ios)
 platform :ios do
   desc "Lane to run the unit tests"
   lane :unit_tests do
-    run_tests(scheme: "IONFileViewerLib")
+    run_tests(
+      scheme: "IONFileViewerLib",
+      destination: "platform=iOS Simulator,name=iPhone 17,OS=26.0"
+    )
   end
 
   desc "Code coverage"
