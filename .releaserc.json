@@ -1,0 +1,54 @@
+{
+  "branches": ["main"],
+  "tagFormat": "${version}",
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "bash ./scripts/update_xcodeproj_version.sh ${nextRelease.version} \"IONFileViewerLib.xcodeproj/project.pbxproj\" && bash ./scripts/update_readme_version.sh ${nextRelease.version} \"IONFileViewerLib\" \"README.md\" && bash ./scripts/build_framework.sh \"IONFileViewerLib\" \"LICENSE\""
+      }
+    ],
+    "@semantic-release/changelog",
+    [
+      "@semantic-release/npm",
+      {
+        "npmPublish": false
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "CHANGELOG.md",
+          "IONFileViewerLib.xcodeproj/project.pbxproj",
+          "IONFileViewerLib.podspec",
+          "package.json",
+          "README.md"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "assets": [
+          {
+            "path": "IONFileViewerLib.zip",
+            "label": "IONFileViewerLib XCFramework"
+          }
+        ],
+        "successComment": false,
+        "failComment": false,
+        "releasedLabels": false
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "publishCmd": "bash ./scripts/publish_cocoapods.sh ${nextRelease.version} \"IONFileViewerLib\""
+      }
+    ]
+  ]
+}
