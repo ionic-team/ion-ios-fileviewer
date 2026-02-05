@@ -1,8 +1,11 @@
-Pod::Spec.new do |spec|
-  spec.name                   = 'IONFileViewerLib'
-  spec.version                = '1.0.3'
+require 'json'
+package = JSON.parse(File.read(File.join(__dir__, 'package.json')))
 
-  spec.summary                = 'Library for viewing files in iOS.'
+Pod::Spec.new do |spec|
+  spec.name                   = package['name']
+  spec.version                = package['version']
+
+  spec.summary                = package['description']
   spec.description            = <<-DESC
   A Swift library for iOS that allows opening files and previewing media files.
   
@@ -10,8 +13,8 @@ Pod::Spec.new do |spec|
   DESC
 
   spec.homepage               = 'https://github.com/ionic-team/ion-ios-fileviewer'
-  spec.license                = { :type => 'MIT', :file => 'LICENSE' }
-  spec.author                 = { 'OutSystems Mobile Ecosystem' => 'rd.mobileecosystem.team@outsystems.com' }
+  spec.license                = { :type => package['license'], :file => 'LICENSE' }
+  spec.author                 = { package['author'] => package['email'] }
   
   spec.source                 = { :http => "https://github.com/ionic-team/ion-ios-fileviewer/releases/download/#{spec.version}/IONFileViewerLib.zip", :type => "zip" }
   spec.vendored_frameworks    = "IONFileViewerLib.xcframework"
