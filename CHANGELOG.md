@@ -1,3 +1,11 @@
+## [1.0.4](https://github.com/ionic-team/ion-ios-fileviewer/compare/1.0.3...1.0.4) (2026-08-28)
+
+
+### Bug Fixes
+
+* openDocumentFromUrl when extension is unresolvable ([#14](https://github.com/ionic-team/ion-ios-fileviewer/issues/14)) ([c08b4da](https://github.com/ionic-team/ion-ios-fileviewer/commit/c08b4da370fc56c3bae4ec5e6038c20bd951bbbc))
+* use Xcode to 16.4 instead of 26 ([#13](https://github.com/ionic-team/ion-ios-fileviewer/issues/13)) ([2f1fe06](https://github.com/ionic-team/ion-ios-fileviewer/commit/2f1fe061261452f2e23e1e15e63e4c86ca290809))
+
 ## 1.0.3
 
 ## Fixes

@@ -17,7 +17,7 @@ The library supports local files, app assets, and remote URLs.
 `ion-ios-fileviewer` is available through [CocoaPods](https://cocoapods.org). Add this to your Podfile:
 
 ```ruby
-pod 'IONFileViewerLib', '~> 1.0.3'
+pod 'IONFileViewerLib', '~> 1.0.4'
 ```
 
 ## Quick Start
