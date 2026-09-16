@@ -1,3 +1,16 @@
+# [2.0.0](https://github.com/ionic-team/ion-ios-fileviewer/compare/1.0.4...2.0.0) (2026-09-16)
+
+
+### Features
+
+* bump minimum deployment target to iOS 15 ([#15](https://github.com/ionic-team/ion-ios-fileviewer/issues/15)) ([bec3795](https://github.com/ionic-team/ion-ios-fileviewer/commit/bec37953414664cce4035b16846ce14020807e4f))
+
+
+### BREAKING CHANGES
+
+* the minimum supported iOS version is now 15.0. Apps
+with a deployment target of iOS 14 can no longer consume this library.
+
 ## [1.0.4](https://github.com/ionic-team/ion-ios-fileviewer/compare/1.0.3...1.0.4) (2026-08-28)
 
 
