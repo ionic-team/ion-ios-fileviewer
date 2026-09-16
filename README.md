@@ -6,7 +6,7 @@ The library supports local files, app assets, and remote URLs.
 
 ## Requirements
 
-- iOS 14.0+
+- iOS 15.0+
 - Swift 5.0+
 - Xcode 15.0+
 
