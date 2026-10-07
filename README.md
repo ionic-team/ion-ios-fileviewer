@@ -12,12 +12,24 @@ The library supports local files, app assets, and remote URLs.
 
 ## Installation
 
+> Replace `${version to use}` below with the version you want to use. Check the [Releases page](https://github.com/ionic-team/ion-ios-fileviewer/releases) for available versions.
+
+### Swift Package Manager
+
+Add the following to your `Package.swift` file:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/ionic-team/ion-ios-fileviewer.git", from: "${version to use}")
+]
+```
+
 ### CocoaPods
 
 `ion-ios-fileviewer` is available through [CocoaPods](https://cocoapods.org). Add this to your Podfile:
 
 ```ruby
-pod 'IONFileViewerLib', '~> 2.0.0'
+pod 'IONFileViewerLib', '~> ${version to use}'
 ```
 
 ## Quick Start
